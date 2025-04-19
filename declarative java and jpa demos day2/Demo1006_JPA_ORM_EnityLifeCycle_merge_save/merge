@@ -1,0 +1,32 @@
+merge:
+
+The merge() method is a crucial JPA operation that reconciles the state of a detached entity 
+with the current persistence context. 
+
+It's primarily used when you want to update an existing entity that is no longer managed by the EntityManager.
+
+
+ Detached Entity Handling
+
+When an entity is in a detached state (previously managed but no longer associated with 
+an active persistence context), merge() creates a new managed instance.
+
+If the entity doesn't exist in the database, it will be persisted as a new record.
+
+
+
+Merge vs Persist
+
+persist(): Creates a new entity if it doesn't exist
+merge(): Updates an existing entity or creates a new one if not found
+
+
+
+Merge vs Update
+
+In Hibernate, update() throws an exception if the entity is already managed
+merge() works seamlessly with both managed and detached entities
+
+
+
+
