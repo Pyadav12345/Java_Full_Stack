@@ -1,1 +1,3 @@
-# Java_Full_Stack
+This course is part of ""Java Full Stack Development using Spring and React"" course. Following list of topics are covered in this course:
+1) Declarative Java: Default & Static Methods, Lambda Expressions, Method References, Java 8 – Date and Time API, Java 8 – Streams API and collections, Language Enhancements.
+2) JPA: What is ORM?, What is Java Persistence API?, Managing Entities with JPA, Lifecycle of Entity, CRUD Operations on Entity, Relationships in JPA, JPQL.
