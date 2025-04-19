@@ -1,0 +1,63 @@
+
+
+
+Caused by: org.hibernate.TransientPropertyValueException: object references an unsaved transient instance - save the transient instance before flushing
+
+This error occurs in Hibernate ORM (Object-Relational Mapping) when you try to persist an entity that has a reference to another entity that hasn't been saved to the database yet.
+
+
+
+Let me explain with an example:
+
+Imagine you have two entity classes representing your database tables:
+
+java
+@Entity
+public class Employee {
+    @Id
+    @GeneratedValue
+    private Long employeeId;
+    private String employeeName;
+    
+    @ManyToOne
+    @JoinColumn(name = "assetId_fk")
+    private Asset asset;
+    
+    // getters and setters
+}
+
+@Entity
+public class Asset {
+    @Id
+    @GeneratedValue
+    private Long assetId;
+    private String assetName;
+    
+    // getters and setters
+}
+
+
+When Hibernate tries to save the Employee entity, it sees that it references an Asset object that is still in a transient state 
+(not saved to the database). This causes the TransientPropertyValueException.
+
+To fix this issue, you need to save the referenced entity first:
+
+Alternatively, you could use cascade operations to automatically save associated entities:
+
+java
+@Entity
+public class Employee {
+    // ...
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "assetId_fk")
+    private Asset asset;
+    
+    // ...
+}
+With the cascade setting, when you save the Employee, Hibernate will automatically save the Asset as well.
+
+
+
+
+
